@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "quiz.game.trivia";
+option java_multiple_files = true;
+
+message GamePreference {
+  uint32 energy = 1;
+  uint32 game_type = 2;
+  uint32 game_difficulty = 3;
+  uint32 questions_count = 4;
+}

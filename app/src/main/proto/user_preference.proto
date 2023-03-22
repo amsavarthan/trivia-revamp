@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "quiz.game.trivia";
+option java_multiple_files = true;
+
+message UserPreference {
+  string google_play_name = 1;
+  string google_play_photo = 2;
+  bool is_google_play_connected = 3;
+  bool is_energy_alert_enabled = 4;
+}
