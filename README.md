@@ -1,22 +1,17 @@
-![Github Preview Image](https://github.com/amsavarthan/trivia-revamp/blob/main/art/Banner.png?raw=true)
+[![GitHub license](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![ktlint](https://img.shields.io/badge/code%20style-%E2%9D%A4-FF4081.svg)](https://ktlint.github.io/)
 
 # Trivia 🤓
 A fun and addictive quiz game made using Jetpack Compose and adheres to the principles of Clean Architecture, with a Model-View-ViewModel (MVVM) design pattern.
-
-<br />
 
 ***Get the latest app from Playstore 👇***
 
 [![Trivia](https://img.shields.io/badge/Trivia-PLAYSTORE-black.svg?style=for-the-badge&logo=android)](https://play.google.com/store/apps/details?id=quiz.game.trivia)
 
-<br />
-
 ## Screenshots 📸
 Game Screen | Multiple Categories | Difficulty | Question Type
 --- | --- | --- |---
 ![](https://github.com/amsavarthan/trivia-revamp/blob/main/art/S1.png)|![](https://github.com/amsavarthan/trivia-revamp/blob/main/art/S2.png)|![](https://github.com/amsavarthan/trivia-revamp/blob/main/art/S4.png)|![](https://github.com/amsavarthan/trivia-revamp/blob/main/art/S5.png)|
-
-<br />
 
 
 ## Built With 🛠
@@ -32,8 +27,6 @@ Game Screen | Multiple Categories | Difficulty | Question Type
   - [Jetpack Navigation](https://developer.android.com/guide/navigation) - Navigation refers to the interactions that allow users to navigate across, into, and back out from the different pieces of content within your app
   - [DataStore](https://developer.android.com/topic/libraries/architecture/datastore) - Jetpack DataStore is a data storage solution that allows you to store key-value pairs or typed objects with protocol buffers. DataStore uses Kotlin coroutines and Flow to store data asynchronously, consistently, and transactionally.
 - [Material Components for Android](https://github.com/material-components/material-components-android) - Modular and customizable Material Design UI components for Android.
-
-<br />
 
 ## Package Structure 📦
     
@@ -59,13 +52,9 @@ Game Screen | Multiple Categories | Difficulty | Question Type
         └── utils
 
 
-<br />
-
 ## 🧰 Build-tool
 
 - [Android Studio Dolphin 2021.3.1 or above](https://developer.android.com/studio)
-
-<br />
 
 ## 📩 Contact
 
@@ -73,8 +62,6 @@ DM me at 👇
 
 * Twitter: <a href="https://twitter.com/lvamsavarthan" target="_blank">@lvamsavarthan</a>
 * Email: amsavarthan.a@gmail.com
-
-<br />
 
 ## License 🔖
 ```
