@@ -209,7 +209,9 @@ fun GameLayout(
         verticalArrangement = Arrangement.SpaceBetween,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Column(modifier = Modifier.fillMaxWidth().wrapContentHeight()) {
+        Column(modifier = Modifier
+            .fillMaxWidth()
+            .wrapContentHeight()) {
             Timer(
                 modifier = Modifier.align(Alignment.CenterHorizontally),
                 onTimeout = { isGameCompleted ->
@@ -289,7 +291,7 @@ private fun Timer(
         modifier = modifier
             .clip(CircleShape)
             .fillMaxWidth(),
-        progress = progressAnimationValue,
+        progress = { progressAnimationValue },
     )
 
 }
@@ -357,7 +359,7 @@ private fun AnswersLayout(
             ) {
                 AnimatedContent(
                     targetState = answer,
-                    transitionSpec = { fadeIn() with fadeOut() }) { text ->
+                    transitionSpec = { fadeIn() togetherWith  fadeOut() }) { text ->
                     Text(
                         text = text,
                         textAlign = TextAlign.Center,

@@ -3,18 +3,36 @@ package quiz.game.trivia.presentation.screens.connect_play
 import androidx.activity.compose.BackHandler
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Close
 import androidx.compose.material.icons.rounded.SportsEsports
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.material3.Button
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.material3.contentColorFor
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -28,7 +46,6 @@ fun ConnectGPlayScreen(
     connectToGooglePlayGames: () -> Unit,
 ) {
 
-    val context = LocalContext.current
     val connectToGooglePlayGamesFunc by rememberUpdatedState(newValue = connectToGooglePlayGames)
 
     var showCloseButton by rememberSaveable {
@@ -96,7 +113,7 @@ fun ConnectGPlayScreen(
                 )
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(
-                    modifier=Modifier.widthIn(max = 400.dp),
+                    modifier = Modifier.widthIn(max = 400.dp),
                     text = "In order to synchronize your progress and take part in the leaderboard, it is necessary for you to connect with Google Play Games.",
                     style = MaterialTheme.typography.bodyMedium,
                     textAlign = TextAlign.Center

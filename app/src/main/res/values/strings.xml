@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">Trivia</string>
+
+    <string name="achievement_first_game"></string>
+    <string name="achievement_tenth_game"></string>
+    <string name="achievement_fifty_game"></string>
+    <string name="achievement_hundred_game"></string>
+
+    <string name="achievement_first_streak"></string>
+    <string name="achievement_streak_lover"></string>
+    <string name="achievement_streak_mastery"></string>
+    <string name="achievement_streak_freak"></string>
+
+    <string name="leaderboard_id"></string>
+
+    <string name="admob_app_id"></string>
+
+    <string name="ad_mob_banner_id"></string>
+    <string name="ad_mob_test_banner_id"></string>
+
+    <string name="ad_mob_reward_id"></string>
+    <string name="ad_mob_reward_id_for_energy"></string>
+    <string name="ad_mob_test_reward_id"></string>
+
+    <string name="ad_mob_inter_id"></string>
+    <string name="ad_mob_test_inter_id"></string>
+
+    <string name="game_services_project_id"></string>
+
+</resources>

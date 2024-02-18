@@ -8,4 +8,5 @@ data class MainUiState(
     val userData: UserData = UserData(),
     val isGooglePlayGamesConnected: Boolean = false,
     val isConnectingToGooglePlayGames: Boolean = true,
+    val energyCount: Int = -1
 )

@@ -13,13 +13,20 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.runtime.*
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
@@ -39,9 +46,22 @@ import quiz.game.trivia.data.receivers.BootCompleteReceiver
 import quiz.game.trivia.domain.CHANNEL_ID
 import quiz.game.trivia.domain.MAX_ENERGY
 import quiz.game.trivia.domain.models.UserData
-import quiz.game.trivia.presentation.ads.*
+import quiz.game.trivia.presentation.ads.loadEnergyRewardAd
+import quiz.game.trivia.presentation.ads.loadInterstitial
+import quiz.game.trivia.presentation.ads.loadRewardAd
+import quiz.game.trivia.presentation.ads.removeEnergyRewardAd
+import quiz.game.trivia.presentation.ads.removeInterstitial
+import quiz.game.trivia.presentation.ads.removeRewardAd
 import quiz.game.trivia.presentation.composable.BannerAdView
-import quiz.game.trivia.presentation.navigation.AppScreen.*
+import quiz.game.trivia.presentation.navigation.AppScreen.CASUAL_MODE
+import quiz.game.trivia.presentation.navigation.AppScreen.CHOOSE_MODE
+import quiz.game.trivia.presentation.navigation.AppScreen.CONNECT_GOOGLE_PLAY
+import quiz.game.trivia.presentation.navigation.AppScreen.COUNT_DOWN
+import quiz.game.trivia.presentation.navigation.AppScreen.GAME
+import quiz.game.trivia.presentation.navigation.AppScreen.HOME
+import quiz.game.trivia.presentation.navigation.AppScreen.QUICK_MODE
+import quiz.game.trivia.presentation.navigation.AppScreen.RESULT
+import quiz.game.trivia.presentation.navigation.AppScreen.SETTINGS
 import quiz.game.trivia.presentation.screens.casual_mode.CasualModeScreen
 import quiz.game.trivia.presentation.screens.choose_mode.ChooseModeScreen
 import quiz.game.trivia.presentation.screens.connect_play.ConnectGPlayScreen
@@ -95,7 +115,6 @@ class MainActivity : ComponentActivity() {
                     Column {
                         val navController = rememberNavController()
                         val uiState by viewModel.uiState.collectAsState()
-                        val energyCount by viewModel.energyCount.collectAsState()
 
                         var initialSignInCompleted by rememberSaveable {
                             mutableStateOf(false)
@@ -109,8 +128,8 @@ class MainActivity : ComponentActivity() {
 
                         //To set alarm again once energy decreases since the alarm
                         //gets canceled once filled to MAX
-                        LaunchedEffect(energyCount) {
-                            if (energyCount == MAX_ENERGY - 1) setAlarm()
+                        LaunchedEffect(uiState.energyCount) {
+                            if (uiState.energyCount == MAX_ENERGY - 1) setAlarm()
                         }
 
                         //To ask notification permission only when not connecting
@@ -141,7 +160,9 @@ class MainActivity : ComponentActivity() {
                                 .weight(1f)
                                 .fillMaxWidth(),
                             navController = navController,
-                            startDestination = HOME.destination
+                            startDestination = HOME.destination,
+                            enterTransition = { fadeIn(animationSpec = tween(300)) },
+                            exitTransition = { fadeOut(animationSpec = tween(300)) }
                         ) {
                             composable(CONNECT_GOOGLE_PLAY.destination) {
                                 ConnectGPlayScreen(

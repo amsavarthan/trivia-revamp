@@ -3,7 +3,11 @@ package quiz.game.trivia.presentation
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import quiz.game.trivia.domain.models.UserData
 import quiz.game.trivia.domain.repository.GameRepository
@@ -12,26 +16,21 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val gameRepository: GameRepository,
+    gameRepository: GameRepository,
     private val userRepository: UserRepository
 ) : ViewModel() {
 
     private val isConnectingToGooglePlay = MutableStateFlow(true)
 
-    val energyCount = gameRepository.energy
-        .stateIn(
-            scope = viewModelScope,
-            started = SharingStarted.WhileSubscribed(5000),
-            initialValue = -1
-        )
-
     val uiState = combine(
         userRepository.userData,
         userRepository.googlePlayConnectedStatus,
-        isConnectingToGooglePlay
-    ) { userData, isGooglePlayGamesConnected, isConnectingToGooglePlayGames ->
+        isConnectingToGooglePlay,
+        gameRepository.energy
+    ) { userData, isGooglePlayGamesConnected, isConnectingToGooglePlayGames, energyCount ->
         MainUiState(
             userData = userData,
+            energyCount = energyCount,
             isGooglePlayGamesConnected = isGooglePlayGamesConnected,
             isConnectingToGooglePlayGames = isConnectingToGooglePlayGames
         )
